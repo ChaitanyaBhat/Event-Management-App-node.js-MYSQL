@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>college()</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <header>
+        <div class="header-div">
+            <div class="title-div">
+                <ul class="list-div">
+                    <li class="a">c</li>
+                    <li class="b">o</li>
+                    <li class="c">l</li>
+                    <li class="d">l</li>
+                    <li class="e">e</li>
+                    <li class="f">g</li>
+                    <li class="g">e</li>
+                    <li class="h">(</li>
+                    <li class="i">)</li>
+                </ul>
+            </div>
+            <div class="option-div">
+                <a href="/home" class="home-btn">Home</a>
+                <a href="/events" class="events-btn">Events</a>
+                <button class="result-btn">Result</button>
+                <button class="add-btn">Admin Login</button>
+                <!-- <a href="/result" class="result-btn">Result</a> -->
+                <!-- <a href="/admin" class="add-btn">Admin Login</a> -->
+            </div>
+        </div>
+    </header>
+    <div class="main-div">
+        <div class="sub-container">
+            <div class="reg-title">
+                <h2>Register Right Now</h2>
+            </div>
+            <div class="clock-div">
+                <img src="./static/clock_analog.png" alt="">
+            </div>
+            <div class="reg-title">
+                <h4>Be a part of an EVENT</h4>
+            </div>
+        </div>
+        <div class="reg-container">
+            <form action="/register" method="POST">
+                <div class="inputs-div">
+                    <div class="info-div">
+                        <span>Fill your information below:</span>
+                    </div>
+                    <!-- <div>
+                        <label for="reg-id">Registration Id:</label>
+                        <input hidden type="text" class="reg-id" name="reg_id"/>
+                    </div>    -->
+                    <div>
+                        <label for="std-name">Student Name:</label>
+                        <input type="text" class="std-name" name="std_name" required/>
+                    </div>
+                    <div>
+                        <label for="std-class">Class:</label>
+                        <input type="text" class="std-class" name="std_class" required/>
+                    </div>               
+                    <div>
+                        <label for="event-name">Event Name:</label>
+                        <input type="text" class="input-event-name" name="event_name" value="<%= data.event_name %>" readonly/>
+                        <input type="hidden" class="input-event-id" name ="event_id" value="<%= data.event_id %>" readonly/>
+                        <!-- <div class="event-drop-div">
+                            <%for(let i = 0; i < data.length; i++) {%>
+                                <span tabindex="0" data-event-id="<%=data[i].Id%>"><%=data[i].Event_name%></span>
+                            <%}%>
+                        </div> -->
+                    </div>
+                    <div>
+                        <label for="contact">Contact No.:</label>
+                        <input type="text" class="contact" name="contact"/>
+                    </div>  
+                    <div>
+                        <label for="email">E-mail:</label>
+                        <input type="email" class="add-email" name="email"/>                       
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <button type="reset" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="register-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="validation-label-div">
+        <label class="notValidLabel"></label>
+    </div>
+    <div class="popup-div1">
+        <form name="resultForm" action="/result" onsubmit="return resultValidateForm()">
+            <div class="email-div">
+                <input type="text" name="email" class="email" placeholder="Enter your e-mail" required />
+            </div>
+            <div class="event-name-div">
+                <input type="text" name="eventName" class="event-name" placeholder="Select the event you registered" required />
+            </div>
+            <div class="submit-div">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+            <div class="cancel1-div">
+                <button type="button" class="cancel-btn1" onclick="hidePopup1()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div class="popup-div2">
+        <form name="adminForm" action="/admin" onsubmit="return adminValidateForm()">
+            <div class="user-name-div">
+                <input type="text" name="userName" class="user-name" placeholder="Enter user name" required />
+            </div>
+            <div class="psw-div">
+                <input type="password" name="password" class="password" placeholder="Enter password" required />
+            </div>
+            <div class="login-div">
+                <button type="submit" class="login-btn">Login</button>
+            </div>
+            <div class="cancel-div">
+                <button type="button" class="cancel-btn2" onclick="hidePopup2()">Cancel</button>
+            </div>
+        </form>
+    </div>   
+    <script>
+        //focus first input on page load:
+        document.querySelector(".std-name").focus();
+    </script>
+    <script>
+        //event name entry(drop-down):
+        let dropDiv = document.querySelector(".event-drop-div"); //check whether it has children!
+        
+        let eventIdInput = document.querySelector(".input-event-id");
+        let eventInput = document.querySelector(".input-event-name");
+        eventInput.addEventListener("focus", dropdownDisplay);
+
+        function dropdownDisplay() {
+            dropDiv.style.display = "block";
+
+            eventInput.onkeydown = function(e) {
+                if(e.keyCode == 40) {
+                    dropDiv.firstElementChild.focus();
+                    focusShifting();
+                }
+                else {
+                    dropDiv.style.display = "none";
+                }
+            };
+        }
+
+        function focusShifting() {
+            let elemInFocus = document.activeElement;
+            elemInFocus.onkeydown = function(e) {
+               if(e.keyCode == 40) {
+                   if(this.nextElementSibling) {
+                       this.nextElementSibling.focus();
+                   }
+                   else {
+                       dropDiv.firstElementChild.focus();
+                   }
+                   focusShifting();
+               }
+               else if(e.keyCode == 38) {
+                   if(this.previousElementSibling) {
+                       this.previousElementSibling.focus();
+                   }
+                   focusShifting();
+               } 
+               else if(e.keyCode == 13) {
+                   console.log(e.target, e.target.innerText, e.target.dataset.eventId);
+                   eventInput.value = e.target.innerText;
+                   eventIdInput.value = e.target.dataset.eventId;
+                   dropDiv.style.display = "none";
+               }
+               else {
+                dropDiv.style.display = "none";
+               }
+            }
+        }
+
+        dropDiv.onclick = checkTarget;
+
+        function checkTarget(e) {
+            console.log(e.target, e.target.innerText, e.target.dataset.eventId);
+            eventInput.value = e.target.innerText;
+            eventIdInput.value = e.target.dataset.eventId;
+            dropDiv.style.display = "none";
+        }
+
+        document.onclick = function(e) {
+            console.log(e.target);
+            if(e.target != eventInput) {
+                dropDiv.style.display = "none";
+            }
+        }
+    </script> 
+    <script>
+        //popups for result and admin login:
+        let validationLabel = document.querySelector(".notValidLabel");
+
+        let result_btn = document.querySelector(".result-btn");
+        result_btn.onclick = displayPopup1;
+        
+        function displayPopup1() {
+            validationLabel.innerText = "";
+            document.querySelector(".popup-div2").style.display = "none";
+            document.querySelector(".popup-div1").style.display = "block";
+        }
+
+        function hidePopup1() {
+            validationLabel.innerText = "";
+            console.log("cancel");
+            document.querySelector(".popup-div1").style.display = "none";
+        }
+
+        let add_btn = document.querySelector(".add-btn");
+        add_btn.onclick = displayPopup2;
+        
+        function displayPopup2() {
+            validationLabel.innerText = "";
+            document.querySelector(".popup-div1").style.display = "none";
+            document.querySelector(".popup-div2").style.display = "block";
+        }
+
+        function hidePopup2() {
+            validationLabel.innerText = "";
+            console.log("cancel");
+            document.querySelector(".popup-div2").style.display = "none";
+        }
+    
+        //verifying student and admin login:
+        function resultValidateForm() {
+            validationLabel.innerText = "";
+            let email = document.resultForm.email.value;
+            let eventName = document.resultForm.eventName.value;
+            console.log(email,eventName);
+            if(email == "abc@gmail.com" && eventName == "abc") {
+                validationLabel.innerText = "";
+                document.resultForm.email.value = "";
+                document.resultForm.eventName.value = "";
+                return true;
+            }
+            else {
+                document.resultForm.email.value = "";
+                document.resultForm.eventName.value = "";
+                validationLabel.innerText = "Email / Event name is wrong"
+                return false;
+            }
+        }
+
+        function adminValidateForm() {
+            validationLabel.innerText = "";
+            let userName = document.adminForm.userName.value;
+            let password = document.adminForm.password.value;
+            console.log(userName,password);
+            if(userName == "abc" && password == "abc") {
+                validationLabel.innerText = "";
+                document.adminForm.userName.value = "";
+                document.adminForm.password.value = "";
+                return true;
+            }
+            else {
+                document.adminForm.userName.value = "";
+                document.adminForm.password.value = "";
+                validationLabel.innerText = "User name / Password is wrong"
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
+
+            

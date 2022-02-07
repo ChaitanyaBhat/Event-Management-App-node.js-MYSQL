@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>college()</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="events.css">
+</head>
+<body>
+    <header>
+        <div class="header-div">
+            <div class="title-div">
+                <ul class="list-div">
+                    <li class="a">c</li>
+                    <li class="b">o</li>
+                    <li class="c">l</li>
+                    <li class="d">l</li>
+                    <li class="e">e</li>
+                    <li class="f">g</li>
+                    <li class="g">e</li>
+                    <li class="h">(</li>
+                    <li class="i">)</li>
+                </ul>
+            </div>
+            <div class="option-div">
+                <a href="/home" class="home-btn">Home</a>
+                <a href="/register" class="register-btn">Register</a>
+                <button class="result-btn">Result</button>
+                <button class="add-btn">Admin Login</button>
+                <!-- <a href="/result" class="result-btn">Result</a> -->
+                <!-- <a href="/admin" class="add-btn">Admin Login</a> -->
+            </div>
+        </div>
+    </header>
+    <center>
+        <div class="title-div">
+            <h1>Upcoming Events</h1>
+        </div>
+        <div class="table-div">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sl. No.</th>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Venue</th>
+                        <th>Description</th>
+                        <th>Last Date for Registration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(row in data) {%>
+                        <tr>                            
+                            <td><%= +row + 1 %></td>
+                            <td><%= data[row].event_name%></td>
+                            <td><%= data[row].event_date%></td>
+                            <td><%= data[row].event_time%></td>
+                            <td><%= data[row].venue%></td>
+                            <td><%= data[row].description%></td>
+                            <td><%= data[row].reg_last_date %></td>
+
+                            <form action="/event" method="POST" name="event-form">
+                                <input type="text" name="event_id" value="<%= data[row].event_id%>" hidden>
+                                <input type="text" name="event_name" value="<%= data[row].event_name%>" hidden>
+                                <td>
+                                    <button type="submit">Register</button>
+                                </td>
+                            </form>
+                        </tr>  
+                    <%}%>
+                </tbody>
+            </table>
+        </div>
+    </center>
+    <div class="popup-div1">
+        <form action="/result">
+            <div class="email-div">
+                <input type="text" class="email" placeholder="Enter your e-mail" />
+            </div>
+            <div class="event-name-div">
+                <input type="text" class="event-name" placeholder="Select the event you registered" />
+            </div>
+            <div class="submit-div">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+            <div class="cancel1-div">
+                <button type="button" class="cancel-btn1" onclick="hidePopup1()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div class="popup-div2">
+        <form action="/admin">
+            <div class="user-name-div">
+                <input type="text" class="user-name" placeholder="Enter user name" />
+            </div>
+            <div class="psw-div">
+                <input type="password" class="password" placeholder="Enter password" />
+            </div>
+            <div class="login-div">
+                <button type="submit" class="login-btn">Login</button>
+            </div>
+            <div class="cancel-div">
+                <button type="button" class="cancel-btn2" onclick="hidePopup2()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        let result_btn = document.querySelector(".result-btn");
+        result_btn.onclick = displayPopup1;
+        
+        function displayPopup1() {
+            document.querySelector(".popup-div2").style.display = "none";
+            document.querySelector(".popup-div1").style.display = "block";
+        }
+
+        function hidePopup1() {
+            console.log("cancel");
+            document.querySelector(".popup-div1").style.display = "none";
+        }
+
+        let add_btn = document.querySelector(".add-btn");
+        add_btn.onclick = displayPopup2;
+        
+        function displayPopup2() {
+            document.querySelector(".popup-div1").style.display = "none";
+            document.querySelector(".popup-div2").style.display = "block";
+        }
+
+        function hidePopup2() {
+            console.log("cancel");
+            document.querySelector(".popup-div2").style.display = "none";
+        }
+    </script>
+    <script src="events.js"></script>
+    <!-- <script>
+        document.onload = function(event) {
+            event.preventDefault();
+            var val = $(this).serialize();
+            $.ajax({
+                url: "../events.php",
+                type: "post",
+                value: val,
+                dataType: "json",
+                success: function(data) {
+                    console.log("success");
+                    console.log(data.status);
+                }
+            }
+
+            );
+        };
+    </script> -->
+    
+    <!-- <script>
+        var ajax = new XMLHttpRequest();
+        var method = "GET";
+        var url = "../events.php";
+        var asynchronous = true;
+        ajax.open(method, url, asynchronous);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                console.log(data);
+            }
+        }
+    </script> -->
+</body>
+</html>
+
+
+<!-- <div class="table-div">
+    <table>
+        <thead>
+            <th>Sl. No.</th>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Venue</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Trishul'20</td><td>01-09-2020</td><td>11:00:00</td><td>Srinagar, Uttarakhand</td><td>The Tech-Carnival</td></tr>
+            <tr><td>1</td><td>Interface</td><td>22-08-2020</td><td>10:00:00</td><td>Rajasthan</td><td>Management Fest</td></tr>
+            <tr><td>1</td><td>TECHEXPO 2020</td><td>03-09-2020</td><td>10:30:00</td><td>Guwahati</td><td></td></tr>
+        </tbody>
+    </table>
+</div> -->
+
+<!-- <% for(col in data[row]) {%>
+    <td><%=data[row][col]%></td>
+<%}%> -->

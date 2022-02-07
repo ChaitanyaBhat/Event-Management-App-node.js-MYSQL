@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College()</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+        .header-div {
+            background-color:rgba(64, 224, 208, 0.507);
+        }
+        .title-div, .option-div {
+            display: inline-block;
+        }
+        .title-div span {
+            color: turquoise;
+        }
+        .option-div {
+            float: right;
+            margin: 1rem;
+        }
+        .option-div > a {
+            text-decoration: none;
+            background-color: rgba(238, 130, 238, 0);
+            color: white;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            padding: 0.5rem;
+            margin-left: 0.5rem;
+        }
+        .option-div > a:hover {
+            border: 0.1px solid white;
+        }
+        .list-div > li {
+            display: inline-block;
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .list-div > .a {
+            color: violet;
+        }
+        .list-div > .b {
+            color: indigo;
+        }
+        .list-div > .c {
+            color: blue;
+        }
+        .list-div > .d {
+            color: green;
+        }
+        .list-div > .e {
+            color: yellow;
+        }
+        .list-div > .f {
+            color: orange;
+        }
+        .list-div > .g {
+            color: red;
+        }
+
+        .certificate-div {
+            width: 1100px;
+            height: 750px;
+            background-image: url(static/crt1.jpg);
+            background-size: 1100px 750px;
+            margin: 1rem;
+        }
+        .certificate-div > div {
+            font-style: italic;
+            font-size: 25px;
+        }
+        .certificate-div span {
+            color: rgb(3, 94, 94);
+        }
+        .event-title {
+            padding: 3.5rem 1rem 0.7rem 1rem;
+            color: aqua;
+        }
+        .event-title > h1 {
+            text-shadow: goldenrod 2px 2px 2px;
+        }
+        .certificate > h1 {
+            color: maroon;
+            margin: 1rem;
+        }
+        .explanation h3 {
+            margin: 1.5rem;
+            color:teal;
+        }
+        .footer-div > div {
+            display: inline-block;
+        }
+        .footer-div h3 {
+            color: aquamarine;
+            margin: 0.7rem;
+        }
+        .result-date-div {
+            margin: 1.8rem 16rem 1rem 1rem;
+        }
+        .signature-div {
+            margin: 1.8rem 1rem 1rem 16rem;
+        }
+        .footer-div span {
+            color: teal;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-div">
+            <div class="title-div">
+                <ul class="list-div">
+                    <li class="a">c</li>
+                    <li class="b">o</li>
+                    <li class="c">l</li>
+                    <li class="d">l</li>
+                    <li class="e">e</li>
+                    <li class="f">g</li>
+                    <li class="g">e</li>
+                    <li class="h">(</li>
+                    <li class="i">)</li>
+                </ul>
+            </div>
+            <div class="option-div">
+                <a href="/home" class="home-btn">Home</a>
+                <a href="/download" class="download-btn">Download</a>
+                <!-- <a href="/events" class="events-btn">Events</a> -->
+                <!-- <a href="/register" class="register-btn">Register</a> -->
+                <!-- <a href="/add-event" class="add-btn">Add Event</a> -->
+            </div>
+        </div>
+    </header>
+    <center>
+        <div class="certificate-div">
+            <div class="event-title">
+                <h1 class="title"><%= data.event_name %></h1>
+            </div>
+            <div class="certificate">
+                <h1>Certificate</h1>
+            </div>
+            <div class="explanation">
+                <h3>This is to certify that</h3>
+                <h3>Mr/Ms <span class="std-name"><%= data.name %></span> of <span class="std-class"><%= data.class %></span></h3>
+                <h3><span class="college-name">GFGC Haliyal</span> is <span class="result"><%= data.result %></span></h3>
+                <h3>in the event <span class="event-name"><%= data.event_name %></span> held at </h3>
+                <h3><span class="event-venue"><%= data.venue %></span> on <span class="event-date"><%= data.event_date %></span></h3>
+            </div>
+            <div class="footer-div">
+                <div class="result-date-div">
+                    <span class="result-date">_____________________</span>  
+                    <h3>Date</h3>
+                </div>
+                <div class="signature-div">
+                    <span class="signature">_____________________</span>
+                    <h3>Signature</h3>
+                </div>
+            </div>
+        </div>
+    </center>
+    <script>
+        let certificateData = JSON.parse(sessionStorage.getItem("certificateData"));
+        console.log("certificateData", certificateData);
+
+        document.querySelector(".title").innerText = certificateData.event;
+
+        document.querySelector(".std-name").innerText = certificateData.stdName;
+        document.querySelector(".std-class").innerText = certificateData.stdClass;
+        document.querySelector(".college-name").innerText = certificateData.college;
+        document.querySelector(".result").innerText = certificateData.result;
+        document.querySelector(".event-name").innerText = certificateData.event;
+        document.querySelector(".event-venue").innerText = certificateData.venue;
+        document.querySelector(".event-date").innerText = certificateData.eventDate;
+        
+        document.querySelector(".result-date").innerText = certificateData.resultDate;
+        document.querySelector(".signature").innerText = certificateData.signature;
+    </script>
+</body>
+</html>
+
+
+<!-- <div class="explanation">
+    <h3>This is to certify that</h3>
+    <h3>Mr/Ms <span class="std-name">___________________________________________</span> of <span class="std-class">_______________________</span></h3>
+    <h3><span class="college-name">___________________________________________________</span> has <span class="result">____________________</span></h3>
+    <h3>in the event <span class="event-name">__________________________________________________________</span> held at </h3>
+    <h3><span class="event-venue">_____________________________________________</span> on <span class="event-date">___________________________</span></h3>
+</div>
+<div class="footer-div">
+    <div class="result-date-div">
+        <span class="result-date">_____________________</span>  
+        <h3>Date</h3>
+    </div>
+    <div class="signature-div">
+        <span class="signature">_____________________</span>
+        <h3>Signature</h3>
+    </div> -->

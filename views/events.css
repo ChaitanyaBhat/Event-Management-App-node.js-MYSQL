@@ -1,0 +1,134 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+.header-div {
+    background-color:rgba(64, 224, 208, 0.507);
+}
+.title-div, .option-div {
+    display: inline-block;
+}
+.title-div span {
+    color: turquoise;
+}
+.option-div {
+    float: right;
+    margin: 1rem;
+}
+.option-div > a {
+    text-decoration: none;
+    background-color: rgba(238, 130, 238, 0);
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+.option-div > a:hover {
+    border: 0.1px solid white;
+}
+.option-div > button {
+    background-color: rgba(238, 130, 238, 0);
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+.option-div > button:hover {
+    border: 0.1px solid white;
+    cursor: pointer;
+}
+.list-div > li {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+}
+.list-div > .a {
+    color: violet;
+}
+.list-div > .b {
+    color: indigo;
+}
+.list-div > .c {
+    color: blue;
+}
+.list-div > .d {
+    color: green;
+}
+.list-div > .e {
+    color: yellow;
+}
+.list-div > .f {
+    color: orange;
+}
+.list-div > .g {
+    color: red;
+}
+
+.title-div > h1{
+    text-align: center;
+}
+.table-div > table {
+    border-collapse: collapse;
+}
+.table-div th {
+    font-size: 18px;
+    border: 2px solid teal;
+    padding: 4px;
+}
+
+.table-div td {
+    font-size: 17px;
+    border: 1px solid darkcyan;
+    padding: 6px 4px;
+}
+.table-div thead {
+    background-color: rgb(252, 181, 187);
+}
+.table-div tr:nth-child(even) {
+    background-color: rgba(252, 181, 187, 0.089);
+}
+.popup-div1, .popup-div2 {
+    display: none;
+    border: aquamarine solid 1px;
+    border-radius: 0.5rem;
+    width: 20rem;
+    height: 20.6rem;
+    box-shadow: gray 1px 1px 6px 1px;
+    text-align: center;
+    margin: 2% 40%;
+}
+.popup-div1  div, .popup-div2  div {
+    margin: 2rem 0.5rem;
+}
+.email, .event-name, .user-name, .password {
+    outline: none;
+    font-size: 17px;
+    padding: 0rem 0.5rem;
+    height: 2.5rem;
+    width: 17rem;
+    border: none;
+    background-color: rgb(219, 216, 216);
+}
+.login-btn, .cancel-btn1, .submit-btn, .cancel-btn2 {
+    outline: none;
+    font-size: 17px;
+    border: none;
+    color: white;
+    height: 3rem;
+    width: 18rem;
+}    
+.login-btn, .submit-btn {
+    background-color:  rgb(19, 82, 11);
+}
+.cancel-btn1, .cancel-btn2 {
+    background-color:rgb(189, 27, 27);
+}
+.login-btn:hover, .cancel-btn1:hover, .submit-btn:hover, .cancel-btn2:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}

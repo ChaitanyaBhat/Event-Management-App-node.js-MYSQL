@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>college()</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+        .header-div {
+            background-color:rgba(64, 224, 208, 0.507);
+        }
+        .title-div, .option-div {
+            display: inline-block;
+        }
+        .title-div span {
+            color: turquoise;
+        }
+        .option-div {
+            float: right;
+            margin: 1rem;
+        }
+        .option-div > a {
+            text-decoration: none;
+            background-color: rgba(238, 130, 238, 0);
+            color: white;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            padding: 0.5rem;
+            margin-left: 0.5rem;
+        }
+        .option-div > a:hover {
+            border: 0.1px solid white;
+        }
+        .list-div > li {
+            display: inline-block;
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .list-div > .a {
+            color: violet;
+        }
+        .list-div > .b {
+            color: indigo;
+        }
+        .list-div > .c {
+            color: blue;
+        }
+        .list-div > .d {
+            color: green;
+        }
+        .list-div > .e {
+            color: yellow;
+        }
+        .list-div > .f {
+            color: orange;
+        }
+        .list-div > .g {
+            color: red;
+        }
+
+
+        .choose-add > button {
+            outline: none;
+            font-size: 17px;
+            font-weight: bold;
+            border: none;
+            color: white;
+            padding: 1rem 4rem;
+            background-color:rgb(247, 113, 131);
+            margin: 1.5rem;
+            border: turquoise solid 1px;
+            border-radius: 0.5rem;
+        }
+        .choose-add > button:hover {
+            cursor: pointer;
+            opacity: 0.9;
+            box-shadow: salmon 1px 1px 6px 1px;
+        }
+
+        .add-event-container, .add-result-container {
+            display: none;
+            width: 30rem;
+            height: 45rem;
+            background-color:white;
+            margin: 1rem 31%;
+            border: turquoise 2px solid;
+            box-shadow: rgba(64, 224, 208, 0.507) 1px 1px 6px 1px;
+            border-radius: 1rem;
+        }
+        .event-inputs-div > .info-div, .result-inputs-div > .info-div {
+            color: salmon;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: salmon solid 1px;
+        }
+        .event-inputs-div > div, .result-inputs-div > div {
+            margin: 3rem 4rem;
+        }
+        .event-inputs-div label, .result-inputs-div label {
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            color: salmon;
+        }
+        .event-inputs-div input, .result-inputs-div input {
+            text-align: left;
+            float: right;
+            font-size: 18px;
+            border: none;
+            background-color: rgba(189, 66, 50, 0);
+            border-bottom: 1px solid salmon;
+            outline: none;
+        }
+        .event-btn-div, .result-btn-div {
+            text-align: right;
+            margin: 0rem 4rem 0rem 0rem;
+        }
+        .event-btn-div > button, .result-btn-div > button {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            color: salmon;
+            background-color: rgba(189, 66, 50, 0);
+            border: 1px solid turquoise;
+            border-radius: 0.5rem;
+            padding: 10px;
+        }
+        .event-btn-div > button:hover, .result-btn-div > button:hover {
+            cursor: pointer;
+            box-shadow: grey 1px 1px 4px 1px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-div">
+            <div class="title-div">
+                <ul class="list-div">
+                    <li class="a">c</li>
+                    <li class="b">o</li>
+                    <li class="c">l</li>
+                    <li class="d">l</li>
+                    <li class="e">e</li>
+                    <li class="f">g</li>
+                    <li class="g">e</li>
+                    <li class="h">(</li>
+                    <li class="i">)</li>
+                </ul>
+            </div>
+            <div class="option-div">
+                <a href="/home" class="home-btn">Home</a>
+                <a href="/events" class="events-btn">Events</a>
+                <!-- <a href="/register" class="register-btn">Register</a> -->
+                <a href="/result" class="result-btn">Result</a>
+                <!-- <a href="/add-event" class="add-btn">Add Event</a> -->
+            </div>
+        </div>
+    </header>
+    <center>
+        <div class="choose-add">
+            <button class="add-event-btn">Add Event</button>
+            <button class="add-result-btn"><a href="/admin/no-result-events">Add Result</a></button>
+            <button class="upload-cert" onclick="browseFile()">Upload Certificate</button>
+            <form class="img-upload-form" action="/admin/upload-cert" method="POST" enctype="multipart/form-data">
+                <!-- <input type="file" accept="image/*" class="file-input" name="img_file" >             -->
+                <input type="file" accept="image/*" class="file-input" name="img_file" value="" onchange="fileSelected(this)" >            
+                <!-- <input type="text" value="ab"> -->
+                <button type="submit">submit</button>
+            </form>
+        </div>
+    </center>
+    <div class="add-event-container">
+        <form action="/admin/add-event" method="POST">
+            <div class="event-inputs-div">
+                <div class="info-div">
+                    <span>Fill event information below:</span>
+                </div>
+                <div>
+                    <label for="event-name">Event Name:</label>
+                    <input type="text" class="event-name" name="event_name" required/>
+                </div>   
+                <div>
+                    <label for="event-date">Event Date:</label>
+                    <input type="date" class="event-date" name="event_date" required/>
+                </div>
+                <div>
+                    <label for="event-time">Event Time:</label>
+                    <input type="time" class="event-time" name="event_time" required/>
+                </div>               
+                <div>
+                    <label for="event-venue">Venue:</label>
+                    <textarea class="event-venue" name="venue" required ></textarea>
+                </div>
+                <div>
+                    <label for="event-desc">Description:</label>
+                    <textarea class="event-desc" name="description" rows="5" cols="30"></textarea>
+                </div>  
+                <div>
+                    <label for="reg-last-date">Last Date of Registration:</label>
+                    <input type="date" class="reg-last-date" name="reg_last_date" required/>
+                </div>
+            </div>
+            <div class="event-btn-div">
+                <button type="button" class="event-cancel-btn">Cancel</button>
+                <button type="submit" class="event-submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+
+        
+    
+    <div class="add-result-container">
+        <form action="/admin/add-result" method="POST">
+            <div class="result-inputs-div">
+                <div class="info-div">
+                    <span>Fill result information below:</span>
+                </div>
+                <div>
+                    <label for="event-name">Event Name:</label>
+                    <input type="text" class="event-name" name="eventName" required/>
+                    <input type="hidden" name="eventId" />
+                </div>   
+                <div>
+                    <label for="winner">Winner:</label>
+                    <input type="text" class="winner" name="winner" required/>
+                    <input type="hidden" name="winnerId" />
+                </div>
+                <div>
+                    <label for="runner1">I Runnerup:</label>
+                    <input type="text" class="runner1" name="runner1" required/>
+                    <input type="hidden" name="runner1Id" />
+                </div>               
+                <div>
+                    <label for="runner2">II Runnerup:</label>
+                    <input type="text" class="runner2" name="runner2" value="" required/>
+                    <input type="hidden" name="runner2Id" />
+                </div>
+            </div>
+            <div class="result-btn-div">
+                <button type="button" class="result-cancel-btn">Cancel</button>
+                <button type="submit" class="result-submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>    
+    <script>
+        //hide & show add event & add result boxes:
+        let addEventBtn = document.querySelector(".add-event-btn");
+        // let addResultBtn = document.querySelector(".add-result-btn");
+
+        let eventContainer = document.querySelector(".add-event-container");
+        let resultContainer = document.querySelector(".add-result-container");
+
+        //display add event box:
+        addEventBtn.addEventListener("click", function() {
+            $("div.add-event-container").find("input").val("");     //empty all inputs
+            // resultContainer.style.display = "none";
+            eventContainer.style.display = "block";
+            eventContainer.querySelector(".event-name").focus();
+        });
+
+        //display add result box:
+        // addResultBtn.addEventListener("click", function() {
+        //     $("div.add-result-container").find("input").val("");    //empty all inputs
+        //     eventContainer.style.display = "none";
+        //     resultContainer.style.display = "block";
+        //     resultContainer.querySelector(".event-name").focus();
+        // });
+
+        function browseFile() {
+            document.querySelector('.file-input').click();
+        }
+
+        function fileSelected(input_obj) {
+            // console.log(input_obj.files, input_obj, input_obj.value)
+            // this.value = input_obj.files[0];
+
+            // var fd = new FormData();
+            // fd.append("img_obj",input_obj.files[0]);  
+            // console.log("fd", fd);
+
+            // document.querySelector('.img-upload-form').submit();
+        }
+
+        function uploadFile(input_obj) {
+            console.log(input_obj.files)
+
+            var blobFile = input_obj.files[0];
+            console.log(blobFile)
+
+        // var blobFile = $('.file-input').files[0];
+        var formData = new FormData();
+        formData.append("fileToUpload", blobFile);
+        console.log(formData)
+
+        $.ajax({
+        url: "/admin/upload-cert",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            // .. do something
+        },
+        error: function(jqXHR, textStatus, errorMessage) {
+            console.log(errorMessage); // Optional
+        }
+        });
+    }
+
+        // const input = document.querySelector('.file-input');
+        // input.addEventListener('change', (e) => {
+
+        // const fd = new FormData();
+        // console.log(e.target, e.target.files, e.target.files[0].name)
+
+        // // add all selected files
+        // // e.target.files.forEach((file) => {
+        // //     fd.append(e.target.name, file, file.name);  
+        // // });
+        // fd.append("img_obj",e.target.files);  
+        // console.log("fd", fd);
+
+        // // create the request
+        // const xhr = new XMLHttpRequest();
+        // xhr.onload = () => {
+        //     if (xhr.status >= 200 && xhr.status < 300) {
+        //         // we done!
+        //     }
+        // };
+
+        // // path to server would be where you'd normally post the form to
+        // xhr.open('POST', '/admin/upload-cert', true);
+        // xhr.send(fd);
+        // });
+
+
+// var frm = new FormData();
+            // console.log(frm)
+            // frm.append('input_obj', input.files[0]);
+            // $.ajax({
+            //     method: 'POST',
+            //     address: 'static/certificate',
+            //     data: frm,
+            //     contentType: false,
+            //     processData: false,
+            //     cache: false
+            // });
+
+
+//         $('#file-input').change(function(){
+//     var frm = new FormData();
+//     frm.append('file-input', input.files[0]);
+//     $.ajax({
+//         method: 'POST',
+//         address: 'static/certificate',
+//         data: frm,
+//         contentType: false,
+//         processData: false,
+//         cache: false
+//     });
+// });
+    </script>
+</body>
+</html>
+

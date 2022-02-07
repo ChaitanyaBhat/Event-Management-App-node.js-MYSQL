@@ -1,0 +1,162 @@
+/* @import-normalize; */
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.list-div > li {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+}
+.list-div > .a {
+    color: violet;
+}
+.list-div > .b {
+    color: indigo;
+}
+.list-div > .c {
+    color: blue;
+}
+.list-div > .d {
+    color: green;
+}
+.list-div > .e {
+    color: yellow;
+}
+.list-div > .f {
+    color: orange;
+}
+.list-div > .g {
+    color: red;
+}
+
+.title-img {
+    background-image: url(./static/blur_img.jpg);
+    background-size: 100% 100%;
+}
+.header-div {
+    border-bottom: rgba(255, 255, 255, 0.568) solid 0.1px;
+}
+.title-div, .option-div {
+    display: inline-block;
+}
+.title-div span {
+    color: turquoise;
+}
+.option-div {
+    float: right;
+    margin: 1.3rem 1rem 1rem 1rem;
+}
+.option-div > a {
+    text-decoration: none;
+    background-color: rgba(238, 130, 238, 0);
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+.option-div > a:hover {
+    border: 0.1px solid white;
+}
+.option-div > button {
+    background-color: rgba(238, 130, 238, 0);
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+.option-div > button:hover {
+    border: 0.1px solid white;
+    cursor: pointer;
+}
+header > .sub-title {
+    text-align: center;
+    color: white;
+    padding: 5rem 0rem 11rem 0rem;
+}
+.middle-div {
+    text-align: center;
+    margin: 1rem;
+}
+.middle-div > .quote-div {
+    margin: 3rem 0rem 4rem 0rem;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+.middle-div  a {
+    text-decoration: none;
+    background-color: rgb(2, 214, 252);
+    color: white;
+    font-size: 18px;
+    padding: 1rem;
+    border: 1px solid palevioletred;
+    border-radius: 0.5rem;
+    box-shadow: palevioletred 1px 1px 4px 1px;
+    font-weight: bold;
+}
+.middle-div  a:hover {
+    padding: 1.1rem;
+    box-shadow: palevioletred 1px 1px 10px 2px;
+}
+.middle-div > .details-div {
+    margin: 3rem 0rem;
+    font-size: 18px;
+    line-height: 2rem;
+}
+.bottom-div {
+    height: 5rem;
+    background-color: rgb(31, 30, 30);
+}
+
+.validation-label-div {
+    text-align: center;
+    font-size: 18px;
+    color: crimson;
+}
+.popup-div1, .popup-div2 {
+    display: none;
+    border: aquamarine solid 1px;
+    border-radius: 0.5rem;
+    width: 20rem;
+    height: 20.6rem;
+    box-shadow: gray 1px 1px 6px 1px;
+    text-align: center;
+    margin: 2% 40%;
+}
+.popup-div1  div, .popup-div2  div {
+    margin: 2rem 0.5rem;
+}
+.email, .event-name, .user-name, .password {
+    outline: none;
+    font-size: 17px;
+    padding: 0rem 0.5rem;
+    height: 2.5rem;
+    width: 17rem;
+    border: none;
+    background-color: rgb(219, 216, 216);
+}
+.login-btn, .cancel-btn1, .submit-btn, .cancel-btn2 {
+    outline: none;
+    font-size: 17px;
+    border: none;
+    color: white;
+    height: 3rem;
+    width: 18rem;
+}    
+.login-btn, .submit-btn {
+    background-color:  rgb(19, 82, 11);
+}
+.cancel-btn1, .cancel-btn2 {
+    background-color:rgb(189, 27, 27);
+}
+.login-btn:hover, .cancel-btn1:hover, .submit-btn:hover, .cancel-btn2:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
