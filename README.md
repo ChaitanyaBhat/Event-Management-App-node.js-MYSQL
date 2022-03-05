@@ -1,4 +1,4 @@
-# EVENT MANAGEMENT APP
+# EVENT MANAGEMENT APP:
 
 This app is used to upload and register to the events, see the results and get the cetificate of the events.
 
